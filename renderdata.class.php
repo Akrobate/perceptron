@@ -11,7 +11,7 @@ class RenderData {
 
 	static function draw($data) {
 		$obj = new RenderData();
-		$obj->init(5,6,20,20);
+		$obj->init(5,6,10,10);
 		$obj->setData($data);
 		return $obj->drawData();
 	}
