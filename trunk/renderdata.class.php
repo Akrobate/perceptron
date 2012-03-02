@@ -29,16 +29,13 @@ class RenderData {
 
 
 	private function drawData() {
-
 		$out = '<div style="margin:20px;width:'.$this->nbWidth * $this->pxWidth.'px;height:'.$this->nbHeight * $this->pxHeight.'px;"> ';
-
 		foreach($this->data as $pixel) {
 			if ($pixel == 1) {
 				$color = "#000";
 			} else {
 				$color = "#FFF";
 			}
-
 			$out .= '<div style="float:left;width:'.$this->pxWidth.'px;height:'.$this->pxHeight.'px;background-color:'.$color.'"></div>';
 		}
 		
