@@ -21,7 +21,7 @@ $perceptron->setLearnData($data);
 
 
 
-for ($x = 0; $x < 2000; $x++) {
+for ($x = 0; $x < 1000; $x++) {
 	for ($i = 0; $i < 7; $i++) {
 		for($j = 0; $j < 7; $j++) {
 			$perceptron->learn($j, $i);

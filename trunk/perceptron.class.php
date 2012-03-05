@@ -8,6 +8,8 @@ class Perceptron {
 	private $weights;
 	private $learnData;
 
+	
+	
 	public function setLearnData($data) {
 		$this->learnData = $data;	
 		
@@ -62,12 +64,10 @@ class Perceptron {
 	
 	}
 
-
 	public function calculMotif($motif, $numW) {
 		$total = $this->calculTotalMotif($motif, $numW);
 		return ($total > 0)?1:0;
 	}
-	
 		
 	public function learn($numG, $numW) {
 		$result = $this->calcul($numG, $numW);
@@ -77,12 +77,10 @@ class Perceptron {
 		}
 	}
 	
-	
 	public function calculWeights($valeur, $valeur_desiree, $valeur_obtenue, $valeur_entree) {
 		$result = ($valeur + ($valeur_desiree - $valeur_obtenue) * $valeur_entree * 10);
 		return $result;
 	}
-	
 
 	public function train($nbtrains) {
 		for ($k = 0; $k < $nbtrains; $k++) {
@@ -103,12 +101,9 @@ class Perceptron {
 		}
 	}
 	
-
-
 	public function getWeights() {
 		return $this->weights;
 	}
-
 
 }
 

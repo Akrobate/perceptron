@@ -53,7 +53,7 @@ class RenderData {
 	}
 
 	
-	private function drawDataWeights() {
+	private function drawDataWeights($showNegative = true) {
 		
 		$max = max($this->data);
 		$min = min($this->data);
@@ -61,8 +61,22 @@ class RenderData {
 		$out = '<div style="margin:20px;width:'.$this->nbWidth * $this->pxWidth.'px;height:'.$this->nbHeight * $this->pxHeight.'px;"> ';
 		
 		foreach($this->data as $pixel) {
-			$ncolor = (int)((255 / ($max - $min)) * ( $pixel - $min) );
-			$color = ' rgb('.$ncolor.','.$ncolor.','.$ncolor.')';
+			
+			if ($showNegative) {
+				if ($pixel < 0) {
+					// color = red;
+					$ncolor = (int)((255/abs($min)) * abs($pixel));
+					$color = ' rgb(255,'. (255 - $ncolor ) .','. (255 - $ncolor) .')';
+				} else {
+					// color = green;
+					$ncolor = (int)((255/abs($max)) * abs($pixel));
+					$color = ' rgb('. (255 - $ncolor) .',255,'. (255 - $ncolor) .')';
+				}
+			} else {
+				$ncolor = (int)((255 / ($max - $min)) * ( $pixel - $min) );
+				$color = ' rgb('.$ncolor.','.$ncolor.','.$ncolor.')';
+			}
+			
 			$out .= '<div style="float:left;width:'.$this->pxWidth.'px;height:'.$this->pxHeight.'px;background-color:'.$color.'"></div>';
 		}
 		
@@ -70,6 +84,30 @@ class RenderData {
 		$out .= '</div>';
 		return $out;
 	}
+	
+	
+	private function drawDataScanner() {
+		/*
+			$out = '<form method="post">';
+			$out .=	'<div id="perceptronGrid" style="width: '. (NBWIDTH*PXWIDTH + (NBWIDTH * 2)) .';height: '. NBHEIGHT * PXHEIGHT + (NBHEIGHT * 2)) .'; border:1px solid black">';
+					for ($i=0; $i < NBWIDTH * NBHEIGHT ; $i++) {
+						<div class="elem" style="width:<?=PXWIDTH?>px;height:<?=PXHEIGHT?>px;border:1px solid black;float:left;<? if (@in_array($i, $posted_data)):?>background-color:#000000;<? endif; ?> ">
+							<input type="checkbox" style="display:none" name="data[]" value="<?=$i?>"  <? if (@in_array($i, $posted_data)):?>checked="checked"<? endif; ?> />
+						</div>
+					}
+					<div style="clear:both"></div>
+				</div>
+		
+				<div class="monitor"><? print_r($answers) ?><br /><? print_r($scores) ?></div>
+				
+				<input type="submit" value="ok">
+				
+			</form>
+		*/
+	}
+	
+	
+	
 }
 
 ?>
