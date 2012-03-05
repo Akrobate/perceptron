@@ -42,15 +42,6 @@ class Perceptron {
 		}
 		asort($scores);
 		return $scores;
-	
-	}
-	
-	
-
-
-	public function calculWeights($valeur, $valeur_desiree, $valeur_obtenue, $valeur_entree) {
-		$result = ($valeur + ($valeur_desiree - $valeur_obtenue) * $valeur_entree * 10);
-		return $result;
 	}
 
 
@@ -85,6 +76,13 @@ class Perceptron {
 			$this->weights[$numW][$i] = $this->calculWeights($this->weights[$numW][$i], $numG == $numW, $result, $this->learnData[$numG][$i]);
 		}
 	}
+	
+	
+	public function calculWeights($valeur, $valeur_desiree, $valeur_obtenue, $valeur_entree) {
+		$result = ($valeur + ($valeur_desiree - $valeur_obtenue) * $valeur_entree * 10);
+		return $result;
+	}
+	
 
 	public function train($nbtrains) {
 		for ($k = 0; $k < $nbtrains; $k++) {
@@ -101,9 +99,8 @@ class Perceptron {
 		for ($i = 0; $i < $this->nbitems; $i++) {
 			for($j = 0; $j < $this->size; $j++) {
 				$this->weights[$i][$j] = rand(-50,50);
-//				$this->weights[$i][$j] = rand(-0,0);
 			}
-		}	
+		}
 	}
 	
 

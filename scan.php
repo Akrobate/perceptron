@@ -36,14 +36,18 @@
 	$answers = $perceptron->answerFormMotif($motif);
 	$scores = $perceptron->answerScoresFormMotif($motif);
 	
-	
+	if (!isset($_POST['data'])) {
+		$posted_data = array();	
+	} else {
+		$posted_data = $_POST['data'];
+	}
 
 
 ?>
 
 <html>
 	<head>
-		<script type="text/javascript" src="/js/jquery.js"></script>
+		<script type="text/javascript" src="js/jquery.js"></script>
 		<script>
 			$(document).ready(function() {
 				// applyBehaviour();
@@ -72,11 +76,12 @@
 	</head>
 
 	<body>
+		
 		<form method="post">
 			<div id="perceptronGrid" style="width:<? echo(NBWIDTH*PXWIDTH + (NBWIDTH * 2)) ?>;height:<? echo(NBHEIGHT * PXHEIGHT + (NBHEIGHT * 2)) ?>; border:1px solid black">
 				<? for ($i=0; $i < NBWIDTH * NBHEIGHT ; $i++):  ?>
-					<div class="elem" style="width:<?=PXWIDTH?>px;height:<?=PXHEIGHT?>px;border:1px solid black;float:left;<? if (in_array($i, $_POST['data'])):?>background-color:#000000;<? endif; ?> ">
-						<input type="checkbox" style="display:none" name="data[]" value="<?=$i?>"  <? if (in_array($i, $_POST['data'])):?>checked="checked"<? endif; ?> />
+					<div class="elem" style="width:<?=PXWIDTH?>px;height:<?=PXHEIGHT?>px;border:1px solid black;float:left;<? if (@in_array($i, $posted_data)):?>background-color:#000000;<? endif; ?> ">
+						<input type="checkbox" style="display:none" name="data[]" value="<?=$i?>"  <? if (@in_array($i, $posted_data)):?>checked="checked"<? endif; ?> />
 					</div>
 				<? endfor; ?>
 				<div style="clear:both"></div>

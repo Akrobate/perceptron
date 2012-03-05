@@ -21,43 +21,39 @@ $perceptron->setLearnData($data);
 
 
 
-for ($x = 0; $x < 20; $x++) {
+for ($x = 0; $x < 2000; $x++) {
 	for ($i = 0; $i < 7; $i++) {
 		for($j = 0; $j < 7; $j++) {
 			$perceptron->learn($j, $i);
 		}
 	}
 
+	$r = array();
 
-
-
-$r = array();
-
-echo ('<table style="border:1px solid black">');
-for ($i = 0; $i < 7; $i++) {
-	
-	echo('<tr>');
-	for($j = 0; $j < 7; $j++) {
-		$r[$i][$j] = $perceptron->calcul($j, $i);
-		if ($r[$i][$j]) {
-			$color = '#000000';
-		} else {
-			$color = '#FFFFFF';
+	echo ('<table style="border:1px solid black">');
+	for ($i = 0; $i < 7; $i++) {
+		
+		echo('<tr>');
+		for($j = 0; $j < 7; $j++) {
+			$r[$i][$j] = $perceptron->calcul($j, $i);
+			if ($r[$i][$j]) {
+				$color = '#000000';
+			} else {
+				$color = '#FFFFFF';
+			}
+			echo('<td width=20 height=20 style="background-color:'.$color.';" >');
+			echo('</td>');
 		}
-		echo('<td width=20 height=20 style="background-color:'.$color.';" >');
-		echo('</td>');
+		echo('</tr>');
 	}
-	echo('</tr>');
-}
-echo ('</table>');
-
+	echo ('</table>');
 
 }
 
 
-
-
-
+foreach ($perceptron->getWeights() as $w) {
+	echo (RenderData::drawWeights($w));
+}
 
 
 
