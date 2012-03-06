@@ -112,7 +112,7 @@ class RenderData {
 		
 		
 			$out .= '<form method="post">';
-			$out .=	'<div id="perceptronGrid" style="width: '. ($this->nbWidth * $this->pxWidth + ($this->nbWidth * 2)) .';height: '. $this->nbHeight * $this->pxHeight + ($this->nbHeight * 2)) .'; border:1px solid black">';
+			$out .=	'<div id="perceptronGrid" style="width: '. ($this->nbWidth * $this->pxWidth + ($this->nbWidth * 2)) .';height: '. ($this->nbHeight * $this->pxHeight + ($this->nbHeight * 2)) .'; border:1px solid black">';
 		
 				for ($i=0; $i < ($this->nbWidth * $this->nbHeight); $i++) {
 					if (@in_array($i, $data)) {
