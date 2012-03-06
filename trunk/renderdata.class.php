@@ -86,25 +86,64 @@ class RenderData {
 	}
 	
 	
-	private function drawDataScanner() {
-		/*
-			$out = '<form method="post">';
-			$out .=	'<div id="perceptronGrid" style="width: '. (NBWIDTH*PXWIDTH + (NBWIDTH * 2)) .';height: '. NBHEIGHT * PXHEIGHT + (NBHEIGHT * 2)) .'; border:1px solid black">';
-					for ($i=0; $i < NBWIDTH * NBHEIGHT ; $i++) {
-						<div class="elem" style="width:<?=PXWIDTH?>px;height:<?=PXHEIGHT?>px;border:1px solid black;float:left;<? if (@in_array($i, $posted_data)):?>background-color:#000000;<? endif; ?> ">
-							<input type="checkbox" style="display:none" name="data[]" value="<?=$i?>"  <? if (@in_array($i, $posted_data)):?>checked="checked"<? endif; ?> />
-						</div>
-					}
-					<div style="clear:both"></div>
-				</div>
+	private function drawDataScanner($data) {
+		if (empty($data)) {
+			$data = array();
+		}
 		
-				<div class="monitor"><? print_r($answers) ?><br /><? print_r($scores) ?></div>
+		$out = "	
+			<script>
+			$(document).ready(function() {
+				applyOB();	
+			});
+			function applyOB() {
+				$('#perceptronGrid .elem').click(function() {
+					if ($(this).find('input').attr('checked')) {
+						$(this).css('background-color', '#FFFFFF');				
+						$(this).find('input').attr('checked', false);					
+					} else {
+						$(this).css('background-color', '#000000');
+						$(this).find('input').attr('checked', true);					
+					}
+				});
+			}
+			</script>
+		";
+		
+		
+			$out .= '<form method="post">';
+			$out .=	'<div id="perceptronGrid" style="width: '. ($this->nbWidth * $this->pxWidth + ($this->nbWidth * 2)) .';height: '. $this->nbHeight * $this->pxHeight + ($this->nbHeight * 2)) .'; border:1px solid black">';
+		
+				for ($i=0; $i < ($this->nbWidth * $this->nbHeight); $i++) {
+					if (@in_array($i, $data)) {
+						$color = '#000000';
+						$checked = ' checked="checked" ';
+					} else {
+						$color = '#FFFFFF';
+						$checked = '';
+					}
+					$out .= '<div class="elem" style="width:'. $this->pxWidth .'px;height:'. $this->pxHeight.'px;border:1px solid black;float:left; background-color: '.$color.'  ">';
+					$out .= '<input type="checkbox" style="display:none" name="data[]" value="'.$i.'"  '.$checked.' />';
+					$out .= '</div>';
+				}
 				
-				<input type="submit" value="ok">
-				
-			</form>
-		*/
+			$out .= '<div style="clear:both"></div></div><input type="submit" value="ok"></form>';
+			
+			return $out;
 	}
+	
+	public function getMotifFromScannedData($data) {
+		$motif = array();
+		for ($i = 0; $i < ($this->nbWidth * $this->nbHeight); $i++) {
+			if (@in_array($i, $data)) {
+				$motif[$i] = 1;
+			} else {
+				$motif[$i] = 0;
+			}
+		}
+		return $motif;
+	}
+	
 	
 	
 	
