@@ -50,7 +50,6 @@
 		<script type="text/javascript" src="js/jquery.js"></script>
 		<script>
 			$(document).ready(function() {
-				// applyBehaviour();
 				applyOB();	
 			});
 			
