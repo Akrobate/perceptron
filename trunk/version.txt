@@ -1,4 +1,4 @@
-Perceptron - RESEAU DE NEURONES
+ FsPerceptron - RESEAU DE NEURONES
 
 Creation d'un reseau de neurones permettant de faire
 de la reconnaissance de chiffres a partir d'un array
