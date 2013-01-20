@@ -10,6 +10,9 @@
 	require_once("renderdata.class.php");
 	require_once("perceptron.class.php");
 
+
+
+	// Declaration de l'objet perceptron
 	$perceptron = new Perceptron();
 	$perceptron->config();
 	$perceptron->init();
