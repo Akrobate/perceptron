@@ -7,4 +7,4 @@ contenant la representation de chaque chiffre
 Artiom FEDOROV
 
 
-Nouvelle revision 14
+Nouvelle revision 15
