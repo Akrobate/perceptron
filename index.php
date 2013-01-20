@@ -6,7 +6,6 @@
 require_once("init2.php");
 require_once("renderdata.class.php");
 require_once("perceptron.class.php");
-require_once("perceptron2.class.php");
 
 
 
