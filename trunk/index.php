@@ -1,5 +1,6 @@
 <?php
 
+// test de reseaux de neurones Baysiens
 
 
 require_once("init2.php");
