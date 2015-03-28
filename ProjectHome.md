@@ -1,0 +1,1 @@
+Création d'un réseau de neurones de type perceptron en PHP5
