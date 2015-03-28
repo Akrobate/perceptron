@@ -2,6 +2,12 @@
 
 // test de reseaux de neurones Baysiens
 
+/**
+ *	Artiom FEDOROV
+ *	Simple perceptron test
+ */
+
+
 
 require_once("init2.php");
 require_once("renderdata.class.php");
