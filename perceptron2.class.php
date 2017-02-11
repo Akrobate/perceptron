@@ -1,18 +1,18 @@
 <?php
 
 class Perceptron2 {
-	
+
 	private $nbitems;
 	private $size;
 
 	private $weights;
-	
+
 	/**
 	 *	Variable des l'ensemble des datas d'apprentissage
 	 *
 	 *
 	 */
-	
+
 	private $learnData;
 
 	private $keys_results;
@@ -21,9 +21,9 @@ class Perceptron2 {
 	 *	Setteur des datas d'apprentissage
 	 *	@param Array $data
 	 */
-	
+
 	public function setLearnData($data) {
-		$this->learnData = $data;		
+		$this->learnData = $data;
 	}
 
 
@@ -31,20 +31,22 @@ class Perceptron2 {
 	 *	Methode de configuration exemple
 	 *
 	 *	nb Imems correspond au nombre de resultats dans le set learn data
-	 *	
+	 *
 	 *
 	 */
-		
+
 	public function config() {
-		
+
 		$keys = array();
-		
+
 		foreach($this->learnData as $d) {
 			if (!in_array($d['result'], $keys)) {
 				$keys[] = $d['result'];
 			}
 		}
-		
+		print_r($keys);
+        echo("Heeeeeeeeeeeeeeeeeeeeeeeeeeeeeeere");
+		print_r($this->learnData);
 		$this->keys_results = $keys;
 		$this->nbitems = count($keys);
 		$this->size = count($this->learnData[0]['data']);
@@ -58,7 +60,7 @@ class Perceptron2 {
 	 *
 	 *
 	 */
-	
+
 	public function init() {
 		for ($i = 0; $i < $this->nbitems; $i++) {
 			for($j = 0; $j < $this->size; $j++) {
@@ -66,22 +68,22 @@ class Perceptron2 {
 			}
 		}
 	}
-	
-	
+
+
 	/**
 	 *	Getteur de datas d'apprentissage
-	 *	
+	 *
 	 */
-	
+
 	public function getLearnData() {
 		return $this->learnData;
 	}
-	
-	
+
+
 	public function getCountLearnData() {
 		return count($this->learnData);
 	}
-	
+
 
 	public function answerFormMotif($motif) {
 		$answ = array();
@@ -93,15 +95,15 @@ class Perceptron2 {
 		return $answ;
 	}
 
-	
-	
-	
-	
+
+
+
+
 	public function answerScoresFormMotif($motif) {
 		$answ = array();
 		foreach($this->weights as $key => $weight) {
 			$scores[$key +1] = $this->calculTotalMotif($motif, $key);
-			
+
 		}
 		asort($scores);
 		return $scores;
@@ -114,7 +116,7 @@ class Perceptron2 {
 
 
 	public function calcul($numG, $numW) {
-		return $this->calculMotif($this->learnData[$numG]['data'], $numW);	
+		return $this->calculMotif($this->learnData[$numG]['data'], $numW);
 	}
 
 	/**
@@ -127,7 +129,7 @@ class Perceptron2 {
 		$total = $this->calculTotalMotif($motif, $numW);
 		return ($total > 0)?1:0;
 	}
-		
+
 
 	/**
 	 *	Methode faisant la somme d'un motif
@@ -137,44 +139,44 @@ class Perceptron2 {
 
 	public function calculTotalMotif($motif, $numW) {
 		$total = 0;
-		
+
 		for ($i=0; $i < $this->size; $i++) {
 			if ($motif[$i] == 1) {
 				$total += $this->weights[$numW][$i];
-			}			
+			}
 		}
-		return $total;	
+		return $total;
 	}
 
-	
+
 	/**
 	 *	Methode réalisant un apprentissage complet
-	 *	
 	 *
 	 *
-	 */		
-		
+	 *
+	 */
+
 	public function learn($numG, $numW) {
 		$result = $this->calcul($numG, $numW);
-		
+
 		for ($i = 0; $i < $this->size; $i++) {
 			$this->weights[$numW][$i] = $this->calculWeights(
-					$this->weights[$numW][$i], 
-					$this->learnData[$numG]['result'] == $this->keys_results[$numW], 
-					$result, 
+					$this->weights[$numW][$i],
+					$this->learnData[$numG]['result'] == $this->keys_results[$numW],
+					$result,
 					$this->learnData[$numG]['data'][$i]
 			);
 		}
 	}
-	
-	
-	
+
+
+
 	/**
 	 *	Methode de calcul de poids
 	 *
 	 *
 	 */
-	 
+
 	public function calculWeights($valeur, $valeur_desiree, $valeur_obtenue, $valeur_entree) {
 		$result = ($valeur + ($valeur_desiree - $valeur_obtenue) * $valeur_entree * 10);
 		return $result;
@@ -196,13 +198,11 @@ class Perceptron2 {
 			}
 		}
 	}
-	
-	
-	
+
+
+
 	public function getWeights() {
 		return $this->weights;
 	}
 
 }
-
-

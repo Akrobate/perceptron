@@ -27,7 +27,7 @@ $perceptron->init();
 
 
 
-for ($x = 0; $x < 1000; $x++) {
+for ($x = 0; $x < 100; $x++) {
 	for ($i = 0; $i < $perceptron->getCountLearnData(); $i++) {
 		for($j = 0; $j < $perceptron->getNbitems(); $j++) {
 			$perceptron->learn($i, $j);
@@ -38,9 +38,10 @@ for ($x = 0; $x < 1000; $x++) {
 
 	echo ('<table style="border:1px solid black">');
 	for ($i = 0; $i < $perceptron->getNbitems(); $i++) {
-		
+
 		echo('<tr>');
 		for($j = 0; $j < $perceptron->getCountLearnData(); $j++) {
+            echo ($perceptron->getCountLearnData());
 			$r[$i][$j] = $perceptron->calcul($j, $i);
 			if ($r[$i][$j]) {
 				$color = '#000000';
