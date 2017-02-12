@@ -4,7 +4,6 @@ class Perceptron2 {
 
 	private $nbitems;
 	private $size;
-
 	private $weights;
 
 	/**
@@ -32,21 +31,15 @@ class Perceptron2 {
 	 *
 	 *	nb Imems correspond au nombre de resultats dans le set learn data
 	 *
-	 *
 	 */
 
 	public function config() {
-
 		$keys = array();
-
 		foreach($this->learnData as $d) {
 			if (!in_array($d['result'], $keys)) {
 				$keys[] = $d['result'];
 			}
 		}
-		print_r($keys);
-        echo("Heeeeeeeeeeeeeeeeeeeeeeeeeeeeeeere");
-		print_r($this->learnData);
 		$this->keys_results = $keys;
 		$this->nbitems = count($keys);
 		$this->size = count($this->learnData[0]['data']);
@@ -56,8 +49,6 @@ class Perceptron2 {
 	/**
 	 *	Methode d'initialisation du perceptron
 	 *	Positionne les weights en mode random
-	 *
-	 *
 	 *
 	 */
 
@@ -174,7 +165,6 @@ class Perceptron2 {
 	/**
 	 *	Methode de calcul de poids
 	 *
-	 *
 	 */
 
 	public function calculWeights($valeur, $valeur_desiree, $valeur_obtenue, $valeur_entree) {
@@ -185,7 +175,6 @@ class Perceptron2 {
 
 	/**
 	 *	Methode d'apprentissage
-	 *
 	 *
 	 */
 

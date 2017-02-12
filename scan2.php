@@ -32,9 +32,6 @@
 
 	echo (RenderData::draw($motif));
 
-	RenderData::draw();
-
-
 	$answers = $perceptron->answerFormMotif($motif);
 	$scores = $perceptron->answerScoresFormMotif($motif);
 
