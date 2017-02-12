@@ -51,9 +51,7 @@
 			$(document).ready(function() {
 				applyOB();
 			});
-
 			function applyOB() {
-
 				$('#perceptronGrid .elem').click(function() {
 					if ($(this).find('input').attr('checked')) {
 						$(this).css('background-color', '#FFFFFF');
@@ -62,11 +60,8 @@
 						$(this).css('background-color', '#000000');
 						$(this).find('input').attr('checked', true);
 					}
-
 				});
-
 			}
-
 		</script>
 		<style>
 
@@ -88,35 +83,26 @@
 			<div class="monitor"><? print_r($answers) ?><br /><? print_r($scores) ?></div>
 
 			<input type="submit" value="ok">
-
 		</form>
 
-
-
 		<?php
-
-$r = array();
-
-echo ('<table style="border:1px solid black">');
-for ($i = 0; $i < 7; $i++) {
-
-	echo('<tr>');
-	for($j = 0; $j < 7; $j++) {
-		$r[$i][$j] = $perceptron->calcul($j, $i);
-		if ($r[$i][$j]) {
-			$color = '#000000';
-		} else {
-			$color = '#FFFFFF';
-		}
-		echo('<td width=20 height=20 style="background-color:'.$color.';" >');
-		echo('</td>');
-	}
-	echo('</tr>');
-}
-echo ('</table>');
-
+            $r = array();
+            echo ('<table style="border:1px solid black">');
+            for ($i = 0; $i < 7; $i++) {
+            	echo('<tr>');
+            	for($j = 0; $j < 7; $j++) {
+            		$r[$i][$j] = $perceptron->calcul($j, $i);
+            		if ($r[$i][$j]) {
+            			$color = '#000000';
+            		} else {
+            			$color = '#FFFFFF';
+            		}
+            		echo('<td width=20 height=20 style="background-color:'.$color.';" >');
+            		echo('</td>');
+            	}
+            	echo('</tr>');
+            }
+            echo ('</table>');
 		?>
-
-
 	</body>
 </html>

@@ -94,7 +94,6 @@ class Perceptron2 {
 		$answ = array();
 		foreach($this->weights as $key => $weight) {
 			$scores[$key +1] = $this->calculTotalMotif($motif, $key);
-
 		}
 		asort($scores);
 		return $scores;
@@ -180,7 +179,7 @@ class Perceptron2 {
 
 	public function train($nbtrains) {
 		for ($k = 0; $k < $nbtrains; $k++) {
-			for ($i = 0; $i < 7; $i++) {
+			for ($i = 0; $i < $this->nbitems; $i++) {
 				for($j = 0; $j < count($this->learnData); $j++) {
 					$this->learn($j, $i);
 				}
