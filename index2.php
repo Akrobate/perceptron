@@ -18,7 +18,7 @@ $perceptron->init();
 //print_r ($perceptron->getLearnData());
 //print_r ($perceptron->getWeights());
 
-for ($x = 0; $x < 100; $x++) {
+for ($x = 0; $x < 50; $x++) {
 	for ($i = 0; $i < $perceptron->getCountLearnData(); $i++) {
 		for($j = 0; $j < $perceptron->getNbitems(); $j++) {
 			$perceptron->learn($i, $j);
@@ -47,6 +47,20 @@ for ($x = 0; $x < 100; $x++) {
 	echo ('</table>');
 
 }
+
+$item_in_dataset = 2;
+
+$motif = $data[$item_in_dataset]['data'];
+$should_be = $data[$item_in_dataset]['result'];
+
+echo("Should be $should_be");
+
+$answers = $perceptron->answerFormMotif($motif);
+$scores = $perceptron->answerScoresFormMotif($motif);
+echo("Answers");
+print_r($answers);
+echo("Scores");
+print_r($scores);
 
 foreach ($perceptron->getWeights() as $w) {
 	echo (RenderData::drawWeights($w));

@@ -93,7 +93,7 @@ class Perceptron2 {
 		$answ = array();
 		foreach($this->weights as $key => $weight) {
 			if ($this->calculMotif($motif, $key)) {
-				$answ[] = $key + 1;
+				$answ[] = $this->keys_results[$key];
 			}
 		}
 		return $answ;
@@ -106,7 +106,8 @@ class Perceptron2 {
 	public function answerScoresFormMotif($motif) {
 		$answ = array();
 		foreach($this->weights as $key => $weight) {
-			$scores[$key +1] = $this->calculTotalMotif($motif, $key);
+			// $scores[$key +1] = $this->calculTotalMotif($motif, $key);
+			$scores[$this->keys_results[$key]] = $this->calculTotalMotif($motif, $key);
 		}
 		asort($scores);
 		return $scores;
