@@ -1,21 +1,14 @@
 <?php
 
-// test de reseaux de neurones Baysiens
-
 /**
  *	Artiom FEDOROV
  *	Simple perceptron test
+ *	test de reseaux de neurones Baysiens
  */
-
-
 
 require_once("init3.php");
 require_once("renderdata.class.php");
 require_once("perceptron2.class.php");
-
-
-
-
 
 $perceptron = new Perceptron2();
 
@@ -24,8 +17,6 @@ $perceptron->config();
 $perceptron->init();
 //print_r ($perceptron->getLearnData());
 //print_r ($perceptron->getWeights());
-
-
 
 for ($x = 0; $x < 100; $x++) {
 	for ($i = 0; $i < $perceptron->getCountLearnData(); $i++) {
@@ -41,7 +32,7 @@ for ($x = 0; $x < 100; $x++) {
 
 		echo('<tr>');
 		for($j = 0; $j < $perceptron->getCountLearnData(); $j++) {
-            echo ($perceptron->getCountLearnData());
+            //echo ($perceptron->getCountLearnData());
 			$r[$i][$j] = $perceptron->calcul($j, $i);
 			if ($r[$i][$j]) {
 				$color = '#000000';
@@ -57,16 +48,6 @@ for ($x = 0; $x < 100; $x++) {
 
 }
 
-
 foreach ($perceptron->getWeights() as $w) {
 	echo (RenderData::drawWeights($w));
 }
-
-
-
-
-
-
-
-
-?>

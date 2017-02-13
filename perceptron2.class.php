@@ -4,6 +4,15 @@ class Perceptron2 {
 
 	private $nbitems;
 	private $size;
+
+
+    /**
+     *  Weights contains the full model
+     *  weights[outputNode][inputNode]
+     *  outputNode = targets distincts
+     *  inputNode = all the input leaves
+     */
+
 	private $weights;
 
 	/**
@@ -41,7 +50,11 @@ class Perceptron2 {
 			}
 		}
 		$this->keys_results = $keys;
-		$this->nbitems = count($keys);
+
+        // nbr distinct outputs
+        $this->nbitems = count($keys);
+
+        // nbr inputs
 		$this->size = count($this->learnData[0]['data']);
 	}
 
