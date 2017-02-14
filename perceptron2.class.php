@@ -1,6 +1,6 @@
 <?php
 
-class Perceptron2 {
+class Perceptron {
 
 	private $nbitems;
 	private $size;

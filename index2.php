@@ -10,7 +10,7 @@ require_once("init3.php");
 require_once("renderdata.class.php");
 require_once("perceptron2.class.php");
 
-$perceptron = new Perceptron2();
+$perceptron = new Perceptron();
 
 $perceptron->setLearnData($data);
 $perceptron->config();
