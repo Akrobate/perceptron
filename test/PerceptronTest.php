@@ -29,10 +29,12 @@ class PerceptronTest extends PHPUnit_Framework_TestCase {
         $perceptron->setLearnData($data);
         $perceptron->config();
         $perceptron->init();
-        $perceptron->train(20);
+        $perceptron->train(50);
 
         $out['total_match_in_response'] = 0;
         $out['total_multiples_answers'] = 0;
+        $out['count_total_learndata'] = count($data);
+        $out['errors'] = array();
 
         foreach($data as $doc) {
 
@@ -42,6 +44,8 @@ class PerceptronTest extends PHPUnit_Framework_TestCase {
 
             if (in_array($doc['result'], $answers)) {
                 $out['total_match_in_response']++;
+            } else {
+                $out['errors'][] = $doc['result'];
             }
 
             if (count($answers) > 1) {
