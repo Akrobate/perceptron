@@ -1,9 +1,9 @@
 <?php
 
 
-include_once("data/init3.php");
+include_once('data/numbers.dataset.php');
 
-class LocationsTest extends PHPUnit_Framework_TestCase {
+class PerceptronTest extends PHPUnit_Framework_TestCase {
 
 
 	public static $nbr = 0;
@@ -15,6 +15,8 @@ class LocationsTest extends PHPUnit_Framework_TestCase {
 
      public function testPerceptronCalculation() {
 
+        $data = TestDataset::get();
+        print_r($data);
 		$this->assertEquals($connected, 'connected');
         $connected = "connected";
         $item_in_dataset = 2;

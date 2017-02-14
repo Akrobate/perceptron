@@ -62,6 +62,18 @@ print_r($answers);
 echo("Scores");
 print_r($scores);
 
+// test for each
+
+/*
+for($i = 0; $i < count($data); i++) {
+
+    echo()
+
+    echo('<br>');
+}
+*/
+
+
 foreach ($perceptron->getWeights() as $w) {
 	echo (RenderData::drawWeights($w));
 }
