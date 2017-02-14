@@ -31,8 +31,8 @@ class PerceptronTest extends PHPUnit_Framework_TestCase {
         $perceptron->init();
         $perceptron->train(20);
 
-        $total_match_in_response = 0;
-        $total_multiples_answers = 0;
+        $out['total_match_in_response'] = 0;
+        $out['total_multiples_answers'] = 0;
 
         foreach($data as $doc) {
 
@@ -40,17 +40,19 @@ class PerceptronTest extends PHPUnit_Framework_TestCase {
             // $should_be = $data[$item_in_dataset]['result'];
             $answers = $perceptron->answerFormMotif($doc['data']);
 
-            if (in_array($doc['data'], $answers)) {
-                $total_match_in_response++;
+            if (in_array($doc['result'], $answers)) {
+                $out['total_match_in_response']++;
             }
 
-            if (count($answers)) {
-                $total_multiples_answers++;
+            if (count($answers) > 1) {
+                $out['total_multiples_answers']++;
             }
 
-            $scores = $perceptron->answerScoresFormMotif($motif);
+            // $scores = $perceptron->answerScoresFormMotif($doc['data']);
 
         }
+
+        print_r($out);
 
         echo("total_match_in_response: $total_match_in_response \n");
         echo("total_multiples_answers: $total_multiples_answers \n");
