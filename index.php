@@ -14,9 +14,6 @@ require_once("renderdata.class.php");
 require_once("perceptron.class.php");
 
 
-
-
-
 $perceptron = new Perceptron();
 $perceptron->config();
 $perceptron->init();
@@ -38,7 +35,7 @@ for ($x = 0; $x < 1000; $x++) {
 
 	echo ('<table style="border:1px solid black">');
 	for ($i = 0; $i < 7; $i++) {
-		
+
 		echo('<tr>');
 		for($j = 0; $j < 7; $j++) {
 			$r[$i][$j] = $perceptron->calcul($j, $i);
