@@ -11,7 +11,7 @@ class DatasetNoise {
 
     public $noise_level;
 
-    public construct() {
+    function __construct() {
         $this->noise_level = 0;
     }
 
