@@ -1,8 +1,8 @@
 <?php
 
 
-include_once('data/numbers.dataset.php');
-include_once('perceptron2.class.php');
+include_once('test/data/numbers.dataset.php');
+include_once('libs/perceptron2.class.php');
 
 
 class PerceptronTest extends PHPUnit_Framework_TestCase {

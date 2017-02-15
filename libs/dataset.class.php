@@ -10,10 +10,30 @@
 
 class Dataset {
 
-    public $noise_level;
+    public $raw_data;
+    public $raw_data_fields;
+    public $raw_data_count;
 
-    public construct() {
+    public $data;
+    public $targets;
+    public $$targets_fields_name;
 
+
+    public construct($raw_data) {
+        $this->raw_data = $raw_data;
     }
 
+    public function setTargetsColumn($targets_field_name) {
+        if (in_array($targets_field_name, $raw_data[0])) {
+            $this->targets = array_map(function($value) {
+                return $value * 2;
+            }, $this->raw_data);
+        }
+    }
+
+    public function checkAllFieldsStableInRawData() {
+
+
+
+    }
 }
