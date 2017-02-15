@@ -16,19 +16,22 @@ class Dataset {
 
     public $data;
     public $targets;
-    public $$targets_fields_name;
+    public $targets_fields_name;
 
-
-    public construct($raw_data) {
+    function __construct($raw_data) {
         $this->raw_data = $raw_data;
     }
 
     public function setTargetsColumn($targets_field_name) {
         if (in_array($targets_field_name, $raw_data[0])) {
             $this->targets = array_map(function($value) {
-                return $value * 2;
+                return $value[$targets_field_name];
             }, $this->raw_data);
         }
+    }
+
+    public function getTargets() {
+        return $this->targets;
     }
 
     public function checkAllFieldsStableInRawData() {
