@@ -66,11 +66,12 @@ class DatasetNoise {
     }
 
 
-    private function decideToAlterElement() {
+    public function decideToAlterElement() {
         $response = false;
-
-        return false;
-
+        if (mt_rand() / mt_getrandmax() < $this->noise_level) {
+            $response = true;
+        }
+        return $response;
     }
 
 }
