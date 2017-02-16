@@ -58,10 +58,7 @@ class DatasetTest extends PHPUnit_Framework_TestCase {
         $dataset = new Dataset($value);
         $dataset->setDataColumn('data');
         $data = $dataset->getData();
-
         $this->assertEquals(json_encode($data), json_encode($expected));
-
-        print_r($data);
     }
 
 }
