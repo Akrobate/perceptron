@@ -79,4 +79,24 @@ class DatasetNoiseTest extends PHPUnit_Framework_TestCase {
 			unset($noise);
 		}
     }
+
+
+    public function testBinaryToggleValue() {
+		$test_data = [
+			[
+				'value'=> 1,
+				'expected' => 0
+			],
+			[
+				'value'=> 0,
+				'expected' => 1
+			],
+		];
+
+		foreach($test_data as $t) {
+			$noise = new DatasetNoise();
+			$this->assertEquals($noise->binaryToggleValue($t['value']), $t['expected']);
+			unset($noise);
+		}
+    }
 }

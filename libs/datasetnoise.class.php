@@ -52,19 +52,36 @@ class DatasetNoise {
 
     /**
      *
-     *  @param: $data array
+     *  @param: $data array[1,0,0,1,1,1,0,...]
      */
 
     private function processBinaryNoise($data) {
+        $noised_data = array();
         foreach($data as $line) {
-            foreach($line as $element) {
-
-
-
+            $noised_line = $line;
+            foreach($line as $key => $element) {
+                $noised_line[$key];
             }
         }
+        return $noised_data;
     }
 
+
+    public function binaryToggleValue($value) {
+        $result = 1;
+        if ($value) {
+            $result = 0;
+        }
+        return $result;
+    }
+
+
+
+    /**
+     *  Method wich decide to alter element with noise_level probability
+     *  @return boolean Return true if element needs to be altered
+     *
+     */
 
     public function decideToAlterElement() {
         $response = false;
@@ -73,5 +90,4 @@ class DatasetNoise {
         }
         return $response;
     }
-
 }
