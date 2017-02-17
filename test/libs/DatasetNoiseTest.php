@@ -47,7 +47,9 @@ class DatasetNoiseTest extends PHPUnit_Framework_TestCase {
 
     public function testDecideToAlterElement() {
 
-		$iteration_for_proba = 1000;
+		$iteration_for_proba = 10000;
+
+		$accpetance_definition = 0.01;
 
 		$test_data = [
 			[
@@ -63,7 +65,7 @@ class DatasetNoiseTest extends PHPUnit_Framework_TestCase {
 		foreach($test_data as $t) {
 			$noise = new DatasetNoise();
 
-			$noise->setNoiseLevel($t['value']);
+			$noise->setNoiseLevel($t['noise_level']);
 
 			$yes = 0;
 			$no = 0;
@@ -76,11 +78,20 @@ class DatasetNoiseTest extends PHPUnit_Framework_TestCase {
 				}
 			}
 
+			var_dump($yes);
+			var_dump($no);
+
+
 			$proba =(float)($yes / $iteration_for_proba);
 
 			var_dump($proba);
-			$this->assertEquals($proba, $t['expected']);
-			$this->assertEquals($t['expected'], $proba);
+			var_dump($t['expected']);
+			var_dump($proba - $t['expected']);
+			// $this->assertEquals($proba, $t['expected']);
+			// $this->assertEquals($t['expected'], $proba);
+
+			$this->assertLessThan($accpetance_definition, abs($proba - $t['expected']));
+
 			unset($noise);
 		}
 
