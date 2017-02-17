@@ -46,58 +46,37 @@ class DatasetNoiseTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testDecideToAlterElement() {
-
 		$iteration_for_proba = 10000;
-
 		$accpetance_definition = 0.01;
-
 		$test_data = [
 			[
 				'noise_level'=> 0.2,
-				'expected' => 0.2
+				'nbr_iterations' => 100000,
+				'acceptance_level' => 0.01
 			],
 			[
 				'noise_level'=> 0.8,
-				'expected' => 0.8
+				'nbr_iterations' => 1000000,
+				'acceptance_level' => 0.001
 			],
 		];
 
 		foreach($test_data as $t) {
 			$noise = new DatasetNoise();
-
 			$noise->setNoiseLevel($t['noise_level']);
 
 			$yes = 0;
 			$no = 0;
-
-			for($i = 0; $i < $iteration_for_proba; $i++ ) {
+			for($i = 0; $i < $t['nbr_iterations']; $i++ ) {
 				if ($noise->decideToAlterElement()) {
 					$yes++;
 				} else {
 					$no++;
 				}
 			}
-
-			var_dump($yes);
-			var_dump($no);
-
-
-			$proba =(float)($yes / $iteration_for_proba);
-
-			var_dump($proba);
-			var_dump($t['expected']);
-			var_dump($proba - $t['expected']);
-			// $this->assertEquals($proba, $t['expected']);
-			// $this->assertEquals($t['expected'], $proba);
-
-			$this->assertLessThan($accpetance_definition, abs($proba - $t['expected']));
-
+			$proba =(float)($yes / $t['nbr_iterations']);
+			$this->assertLessThan($t['acceptance_level'], abs($proba - $t['noise_level']));
 			unset($noise);
 		}
-
     }
-
-
-
-
 }
