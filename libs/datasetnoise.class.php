@@ -60,7 +60,9 @@ class DatasetNoise {
         foreach($data as $line) {
             $noised_line = $line;
             foreach($line as $key => $element) {
-                $noised_line[$key];
+                if ($this->decideToAlterElement()) {
+                    $noised_line[$key] = $this->binaryToggleValue($line[$key]);
+                }
             }
         }
         return $noised_data;
