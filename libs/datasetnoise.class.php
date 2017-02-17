@@ -55,7 +55,7 @@ class DatasetNoise {
      *  @param: $data array[1,0,0,1,1,1,0,...]
      */
 
-    private function processBinaryNoise($data) {
+    public function processBinaryNoise($data) {
         $noised_data = array();
         foreach($data as $line) {
             $noised_line = $line;
