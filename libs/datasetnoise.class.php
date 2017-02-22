@@ -1,19 +1,18 @@
 <?php
 
 /**
- * Noise generator in arrays
- * Use full to test and boost learning of
- * a percpetron
+ *  Noise generator in arrays
+ *  Use full to test and boost learning of
+ *  a percpetron
  *
- * Works with Dataset Entity and provide binary
- * (for the moment) noise on the data only. Not targets.
+ *  Works with Dataset Entity and provide binary
+ *  (for the moment) noise on the data only. Not targets.
  *
  */
 
 class DatasetNoise {
 
     public $noise_level;
-
     public $source_dataset;
     public $working_copy_dataset;
 
@@ -41,17 +40,25 @@ class DatasetNoise {
     }
 
     /**
-     *
+     * Processes noise
      */
 
-    public function process($dataset) {
+    public function process($dataset, $noise_mode = 'binairy') {
         $this->source_dataset = $dataset;
         $this->working_copy_dataset = clone $dataset;
+        $result = array();
+        switch ($noise_mode) {
+            case 'binairy':
+                $result = $this->processBinaryNoise($this->working_copy_dataset);
+                break;
+            default:
+                break;
+        }
         return $dataset;
     }
 
+
     /**
-     *
      *  @param: $data array[1,0,0,1,1,1,0,...]
      */
 
@@ -68,6 +75,11 @@ class DatasetNoise {
         return $noised_data;
     }
 
+
+    /**
+     *  Method to switch toggle binairy value
+     *  example: if 1 the return 0 else if 0 return 1
+     */
 
     public function binaryToggleValue($value) {
         $result = 1;
