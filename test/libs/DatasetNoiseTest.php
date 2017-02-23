@@ -113,12 +113,23 @@ class DatasetNoiseTest extends PHPUnit_Framework_TestCase {
 		];
 
 		foreach($test_data as $t) {
-			$noise = new DatasetNoise();
-			$noise->setNoiseLevel($t['noise']);
-			$noise_array = $noise->processBinaryNoise($t['value']);
 
-			// $this->assertEquals($noise->processBinaryNoise($t['value']));
+            $noise = new DatasetNoise();
+            $noise->setNoiseLevel($t['noise']);
+            // var_dump($t['value']);
+            $noise_array = $noise->processBinaryNoise($t['value']);
+        }
+
+/*
+		foreach($test_data as $t) {
+
+            var_dump($noise_array);
+
+            echo("teeetetete");
+
+			$this->assertEquals(array(), $noise->processBinaryNoise($t['value']));
 			unset($noise);
 		}
+        */
     }
 }

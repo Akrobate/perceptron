@@ -64,12 +64,9 @@ class DatasetNoise {
 
     public function processBinaryNoise($data) {
         $noised_data = array();
-        foreach($data as $line) {
-            $noised_line = $line;
-            foreach($line as $key => $element) {
-                if ($this->decideToAlterElement()) {
-                    $noised_line[$key] = $this->binaryToggleValue($line[$key]);
-                }
+        foreach($data as $key => $element) {
+            if ($this->decideToAlterElement()) {
+                $noised_data[$key] = $this->binaryToggleValue($data[$key]);
             }
         }
         return $noised_data;
